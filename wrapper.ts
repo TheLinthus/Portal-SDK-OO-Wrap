@@ -20,10 +20,10 @@ namespace Portal {
             }
         }
 
-        public async dispatch(...args: Parameters<T>): Promise<void> {
+        public dispatch(...args: Parameters<T>): void {
             for (const handler of this.handlers) {
                 try {
-                    await handler(...args);
+                    handler(...args);
                 } catch (e) {
                     mod.SendErrorReport(mod.Message(`Error in event handler: ${e}`));
                 }
@@ -510,13 +510,12 @@ namespace Portal {
     }
 
     export class Player extends GameObject {
-        protected _native: mod.Player;
+        protected declare _native: mod.Player;
         public readonly inputRestrictions: InputRestrictions;
         public readonly inventory: InventoryManager;
 
         protected constructor(native: mod.Player) {
             super(native);
-            this._native = native;
             this.inputRestrictions = new InputRestrictions(this);
             this.inventory = new InventoryManager(this);
         }
@@ -858,11 +857,10 @@ namespace Portal {
 
     //#region Vehicle
     export class Vehicle extends GameObject {
-        protected _native: mod.Vehicle;
+        protected declare _native: mod.Vehicle;
 
         protected constructor(native: mod.Vehicle) {
             super(native);
-            this._native = native;
         }
 
         public static fromNative(native: mod.Vehicle): Vehicle {
@@ -899,11 +897,10 @@ namespace Portal {
     }
 
     export class CapturePoint extends Objective {
-        protected _native: mod.CapturePoint;
+        protected declare _native: mod.CapturePoint;
 
         private constructor(native: mod.CapturePoint) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): CapturePoint | null {
@@ -944,11 +941,10 @@ namespace Portal {
     }
 
     export class MCOM extends Objective {
-        protected _native: mod.MCOM;
+        protected declare _native: mod.MCOM;
 
         private constructor(native: mod.MCOM) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): MCOM | null {
@@ -979,11 +975,10 @@ namespace Portal {
     }
 
     export class HQ extends Objective {
-        protected _native: mod.HQ;
+        protected declare _native: mod.HQ;
 
         private constructor(native: mod.HQ) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): HQ | null {
@@ -1011,11 +1006,10 @@ namespace Portal {
     }
 
     export class Sector extends Objective {
-        protected _native: mod.Sector;
+        protected declare _native: mod.Sector;
 
         private constructor(native: mod.Sector) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): Sector | null {
@@ -1785,11 +1779,10 @@ namespace Portal {
 
     //#region Spawners
     export class Spawner extends GameObject {
-        protected _native: mod.Spawner;
+        protected declare _native: mod.Spawner;
 
         private constructor(native: mod.Spawner) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): Spawner | null {
@@ -1814,11 +1807,10 @@ namespace Portal {
     }
 
     export class VehicleSpawner extends GameObject {
-        protected _native: mod.VehicleSpawner;
+        protected declare _native: mod.VehicleSpawner;
 
         private constructor(native: mod.VehicleSpawner) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): VehicleSpawner | null {
@@ -1858,11 +1850,10 @@ namespace Portal {
     }
 
     export class EmplacementSpawner extends GameObject {
-        protected _native: mod.EmplacementSpawner;
+        protected declare _native: mod.EmplacementSpawner;
 
         private constructor(native: mod.EmplacementSpawner) {
             super(native);
-            this._native = native;
         }
 
         public static fromNative(native: mod.EmplacementSpawner): EmplacementSpawner {
@@ -1882,11 +1873,10 @@ namespace Portal {
     }
 
     export class LootSpawner extends GameObject {
-        protected _native: mod.LootSpawner;
+        protected declare _native: mod.LootSpawner;
 
         private constructor(native: mod.LootSpawner) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): LootSpawner | null {
@@ -1910,11 +1900,10 @@ namespace Portal {
     }
 
     export class SpawnPoint extends GameObject {
-        protected _native: mod.SpawnPoint;
+        protected declare _native: mod.SpawnPoint;
 
         private constructor(native: mod.SpawnPoint) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): SpawnPoint | null {
@@ -1940,11 +1929,10 @@ namespace Portal {
 
     //#region Interactions
     export class AreaTrigger extends GameObject {
-        protected _native: mod.AreaTrigger;
+        protected declare _native: mod.AreaTrigger;
 
         private constructor(native: mod.AreaTrigger) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): AreaTrigger | null {
@@ -1981,11 +1969,10 @@ namespace Portal {
     }
 
     export class InteractPoint extends GameObject {
-        protected _native: mod.InteractPoint;
+        protected declare _native: mod.InteractPoint;
 
         private constructor(native: mod.InteractPoint) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): InteractPoint | null {
@@ -2012,11 +1999,10 @@ namespace Portal {
 
     //#region Spatial
     export class SpatialObject extends GameObject {
-        protected _native: mod.SpatialObject;
+        protected declare _native: mod.SpatialObject;
 
         private constructor(native: mod.SpatialObject) {
             super(native);
-            this._native = native;
         }
 
         public static fromNative(native: mod.SpatialObject): SpatialObject {
@@ -2035,11 +2021,10 @@ namespace Portal {
 
     //#region Team & Squad
     export class Team extends GameObject {
-        protected _native: mod.Team;
+        protected declare _native: mod.Team;
 
         private constructor(native: mod.Team) {
             super(native);
-            this._native = native;
         }
 
         public static fromNative(native: mod.Team): Team {
@@ -2175,10 +2160,10 @@ namespace Portal {
      * Defines the behavior contract for an AI, with methods for lifecycle events.
      */
     export interface AIBehavior {
-        onSpawn(player: AIPlayer): void | Promise<void>;
-        onDamaged(player: AIPlayer, damager: Player, damage: number, weapon: mod.WeaponUnlock): void | Promise<void>;
-        onDeath(player: AIPlayer, killer: Player, deathType: mod.DeathType, weapon: mod.WeaponUnlock): void | Promise<void>;
-        onGoing?(player: AIPlayer): void | Promise<void>;
+        onSpawn(player: AIPlayer): void;
+        onDamaged(player: AIPlayer, damager: Player, damage: number, weapon: mod.WeaponUnlock): void;
+        onDeath(player: AIPlayer, killer: Player, deathType: mod.DeathType, weapon: mod.WeaponUnlock): void;
+        onGoing?(player: AIPlayer): void;
     }
 
     /**
@@ -2253,7 +2238,7 @@ namespace Portal {
             const tickInterval = personality.options.behaviorTickInterval ?? 1.0;
             while (mod.IsPlayerValid(player.native) && player.isAlive) {
                 try {
-                    await personality.behavior.onGoing!(player);
+                    personality.behavior.onGoing!(player);
                 } catch (e) {
                     mod.SendErrorReport(mod.Message(`Error in AI onGoing behavior: ${e}`));
                 }
@@ -2398,11 +2383,10 @@ namespace Portal {
 
     //region World Icons
     export class WorldIcon extends GameObject {
-        protected _native: mod.WorldIcon;
+        protected declare _native: mod.WorldIcon;
 
         private constructor(native: mod.WorldIcon) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): WorldIcon | null {
@@ -2428,11 +2412,10 @@ namespace Portal {
 
     //#region VFX & SFX
     export class VFX extends GameObject {
-        protected _native: mod.VFX;
+        protected declare _native: mod.VFX;
 
         protected constructor(native: mod.VFX) {
             super(native);
-            this._native = native;
         }
 
         public static fromNative(native: mod.VFX): VFX {
@@ -2476,11 +2459,10 @@ namespace Portal {
     }
 
     export class SFX extends GameObject {
-        protected _native: mod.SFX;
+        protected declare _native: mod.SFX;
 
         protected constructor(native: mod.SFX) {
             super(native);
-            this._native = native;
         }
 
         public static fromNative(native: mod.SFX): SFX {
@@ -2527,11 +2509,10 @@ namespace Portal {
 
     //#region WaypointPath
     export class WaypointPath extends GameObject {
-        protected _native: mod.WaypointPath;
+        protected declare _native: mod.WaypointPath;
 
         private constructor(native: mod.WaypointPath) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): WaypointPath | null {
@@ -2568,11 +2549,10 @@ namespace Portal {
 
     //#region Royale
     export class RingOfFire extends GameObject {
-        protected _native: mod.RingOfFire;
+        protected declare _native: mod.RingOfFire;
 
         private constructor(native: mod.RingOfFire) {
             super(native);
-            this._native = native;
         }
 
         public static create(position: Vector, rotation: Vector = Vector.Zero, scale: Vector = Vector.One): RingOfFire | null {
@@ -2610,11 +2590,10 @@ namespace Portal {
 
     //#region Effects
     export class ScreenEffect extends GameObject {
-        protected _native: mod.ScreenEffect;
+        protected declare _native: mod.ScreenEffect;
 
         private constructor(native: mod.ScreenEffect) {
             super(native);
-            this._native = native;
         }
 
         public static fromNative(native: mod.ScreenEffect): ScreenEffect {
@@ -2670,103 +2649,103 @@ namespace Portal {
 
 //#region Event Handlers
 
-export async function OngoingGlobal() {
+export function OngoingGlobal() {
 
 }
 
-export async function OngoingAreaTrigger(eventAreaTrigger: mod.AreaTrigger) {
+export function OngoingAreaTrigger(eventAreaTrigger: mod.AreaTrigger) {
     const area = Portal.AreaTrigger.fromNative(eventAreaTrigger);
-    await area.onGoing.dispatch();
+    area.onGoing.dispatch();
 }
 
-export async function OngoingCapturePoint(eventCapturePoint: mod.CapturePoint) {
+export function OngoingCapturePoint(eventCapturePoint: mod.CapturePoint) {
     const cp = Portal.CapturePoint.fromNative(eventCapturePoint);
-    await cp.onGoing.dispatch();
+    cp.onGoing.dispatch();
 }
 
-export async function OngoingEmplacementSpawner(eventEmplacementSpawner: mod.EmplacementSpawner) {
+export function OngoingEmplacementSpawner(eventEmplacementSpawner: mod.EmplacementSpawner) {
     const spawner = Portal.EmplacementSpawner.fromNative(eventEmplacementSpawner);
-    await spawner.onGoing.dispatch();
+    spawner.onGoing.dispatch();
 }
 
-export async function OngoingHQ(eventHQ: mod.HQ) {
+export function OngoingHQ(eventHQ: mod.HQ) {
     const hq = Portal.HQ.fromNative(eventHQ);
-    await hq.onGoing.dispatch();
+    hq.onGoing.dispatch();
 }
 
-export async function OngoingInteractPoint(eventInteractPoint: mod.InteractPoint) {
+export function OngoingInteractPoint(eventInteractPoint: mod.InteractPoint) {
     const interactPoint = Portal.InteractPoint.fromNative(eventInteractPoint);
-    await interactPoint.onGoing.dispatch();
+    interactPoint.onGoing.dispatch();
 }
 
-export async function OngoingLootSpawner(eventLootSpawner: mod.LootSpawner) {
+export function OngoingLootSpawner(eventLootSpawner: mod.LootSpawner) {
     const lootSpawner = Portal.LootSpawner.fromNative(eventLootSpawner);
-    await lootSpawner.onGoing.dispatch();
+    lootSpawner.onGoing.dispatch();
 }
 
-export async function OngoingMCOM(eventMCOM: mod.MCOM) {
+export function OngoingMCOM(eventMCOM: mod.MCOM) {
     const mcom = Portal.MCOM.fromNative(eventMCOM);
-    await mcom.onGoing.dispatch();
+    mcom.onGoing.dispatch();
 }
 
-export async function OngoingPlayer(eventPlayer: mod.Player) {
+export function OngoingPlayer(eventPlayer: mod.Player) {
     const player = Portal.Player.fromNative(eventPlayer);
-    await player.onGoing.dispatch();
+    player.onGoing.dispatch();
 }
 
-export async function OngoingRingOfFire(eventRingOfFire: mod.RingOfFire) {
+export function OngoingRingOfFire(eventRingOfFire: mod.RingOfFire) {
     const ringOfFire = Portal.RingOfFire.fromNative(eventRingOfFire);
-    await ringOfFire.onGoing.dispatch();
+    ringOfFire.onGoing.dispatch();
 }
 
-export async function OngoingSector(eventSector: mod.Sector) {
+export function OngoingSector(eventSector: mod.Sector) {
     const sector = Portal.Sector.fromNative(eventSector);
-    await sector.onGoing.dispatch();
+    sector.onGoing.dispatch();
 }
 
-export async function OngoingSpawner(eventSpawner: mod.Spawner) {
+export function OngoingSpawner(eventSpawner: mod.Spawner) {
     const spawner = Portal.Spawner.fromNative(eventSpawner);
-    await spawner.onGoing.dispatch();
+    spawner.onGoing.dispatch();
 }
 
-export async function OngoingSpawnPoint(eventSpawnPoint: mod.SpawnPoint) {
+export function OngoingSpawnPoint(eventSpawnPoint: mod.SpawnPoint) {
     const spawnPoint = Portal.SpawnPoint.fromNative(eventSpawnPoint);
-    await spawnPoint.onGoing.dispatch();
+    spawnPoint.onGoing.dispatch();
 }
 
-export async function OngoingTeam(eventTeam: mod.Team) {
+export function OngoingTeam(eventTeam: mod.Team) {
     const team = Portal.Team.fromNative(eventTeam);
-    await team.onGoing.dispatch();
+    team.onGoing.dispatch();
 }
 
-export async function OngoingVehicle(eventVehicle: mod.Vehicle) {
+export function OngoingVehicle(eventVehicle: mod.Vehicle) {
     const vehicle = Portal.Vehicle.fromNative(eventVehicle);
-    await vehicle.onGoing.dispatch();
+    vehicle.onGoing.dispatch();
 }
 
-export async function OngoingVehicleSpawner(eventVehicleSpawner: mod.VehicleSpawner) {
+export function OngoingVehicleSpawner(eventVehicleSpawner: mod.VehicleSpawner) {
     const vehicleSpawner = Portal.VehicleSpawner.fromNative(eventVehicleSpawner);
-    await vehicleSpawner.onGoing.dispatch();
+    vehicleSpawner.onGoing.dispatch();
 }
 
-export async function OngoingWaypointPath(eventWaypointPath: mod.WaypointPath) {
+export function OngoingWaypointPath(eventWaypointPath: mod.WaypointPath) {
     const waypointPath = Portal.WaypointPath.fromNative(eventWaypointPath);
-    await waypointPath.onGoing.dispatch();
+    waypointPath.onGoing.dispatch();
 }
 
-export async function OngoingWorldIcon(eventWorldIcon: mod.WorldIcon) {
+export function OngoingWorldIcon(eventWorldIcon: mod.WorldIcon) {
     const worldIcon = Portal.WorldIcon.fromNative(eventWorldIcon);
-    await worldIcon.onGoing.dispatch();
+    worldIcon.onGoing.dispatch();
 }
 
-export async function Ongoing() {
+export function Ongoing() {
     Portal.Game.onGoing.dispatch();
 }
 
-export async function OnPlayerDied(eventPlayer: mod.Player, eventOtherPlayer: mod.Player, eventDeathType: mod.DeathType, eventWeaponUnlock: mod.WeaponUnlock) {
+export function OnPlayerDied(eventPlayer: mod.Player, eventOtherPlayer: mod.Player, eventDeathType: mod.DeathType, eventWeaponUnlock: mod.WeaponUnlock) {
     const victim = Portal.Player.fromNative(eventPlayer);
     const killer = Portal.Player.fromNative(eventOtherPlayer);
-    await victim.onPlayerDied.dispatch(killer, eventDeathType, eventWeaponUnlock);
+    victim.onPlayerDied.dispatch(killer, eventDeathType, eventWeaponUnlock);
 
     const aiVictim = victim.asAI();
     if (aiVictim) {
@@ -2774,11 +2753,11 @@ export async function OnPlayerDied(eventPlayer: mod.Player, eventOtherPlayer: mo
     }
 }
 
-export async function OnPlayerDamaged(eventPlayer: mod.Player, eventOtherPlayer: mod.Player, eventDamageType: mod.DamageType, eventWeaponUnlock: mod.WeaponUnlock) {
+export function OnPlayerDamaged(eventPlayer: mod.Player, eventOtherPlayer: mod.Player, eventDamageType: mod.DamageType, eventWeaponUnlock: mod.WeaponUnlock) {
     const victim = Portal.Player.fromNative(eventPlayer);
     const damager = Portal.Player.fromNative(eventOtherPlayer);
     const damage = mod.GetSoldierState(victim.native, mod.SoldierStateNumber.CurrentHealth) - victim.currentHealth; // This is a workaround
-    await victim.onPlayerDamaged.dispatch(damager, eventDamageType, eventWeaponUnlock);
+    victim.onPlayerDamaged.dispatch(damager, eventDamageType, eventWeaponUnlock);
 
     const aiVictim = victim.asAI();
     if (aiVictim) {
@@ -2789,273 +2768,273 @@ export async function OnPlayerDamaged(eventPlayer: mod.Player, eventOtherPlayer:
     }
 }
 
-export async function OnPlayerEnterVehicle(eventPlayer: mod.Player, eventVehicle: mod.Vehicle) {
+export function OnPlayerEnterVehicle(eventPlayer: mod.Player, eventVehicle: mod.Vehicle) {
     const player = Portal.Player.fromNative(eventPlayer);
     const vehicle = Portal.Vehicle.fromNative(eventVehicle);
-    await player.onPlayerEnterVehicle.dispatch(vehicle);
-    await vehicle.onPlayerEnterVehicle.dispatch(player);
+    player.onPlayerEnterVehicle.dispatch(vehicle);
+    vehicle.onPlayerEnterVehicle.dispatch(player);
 }
 
-export async function OnPlayerExitVehicle(eventPlayer: mod.Player, eventVehicle: mod.Vehicle) {
+export function OnPlayerExitVehicle(eventPlayer: mod.Player, eventVehicle: mod.Vehicle) {
     const player = Portal.Player.fromNative(eventPlayer);
     const vehicle = Portal.Vehicle.fromNative(eventVehicle);
-    await player.onPlayerExitVehicle.dispatch(vehicle);
-    await vehicle.onPlayerExitVehicle.dispatch(player);
+    player.onPlayerExitVehicle.dispatch(vehicle);
+    vehicle.onPlayerExitVehicle.dispatch(player);
 }
 
-export async function OnVehicleDestroyed(eventVehicle: mod.Vehicle) {
+export function OnVehicleDestroyed(eventVehicle: mod.Vehicle) {
     const vehicle = Portal.Vehicle.fromNative(eventVehicle);
-    await vehicle.onVehicleDestroyed.dispatch();
+    vehicle.onVehicleDestroyed.dispatch();
 }
 
-export async function OnAIMoveToFailed(eventPlayer: mod.Player) {
+export function OnAIMoveToFailed(eventPlayer: mod.Player) {
     const player = Portal.Player.fromNative(eventPlayer).asAI();
     if (player) {
-        await player.onAIMoveToFailed.dispatch();
+        player.onAIMoveToFailed.dispatch();
     }
 }
 
-export async function OnAIMoveToRunning(eventPlayer: mod.Player) {
+export function OnAIMoveToRunning(eventPlayer: mod.Player) {
     const player = Portal.Player.fromNative(eventPlayer).asAI();
     if (player) {
-        await player.onAIMoveToRunning.dispatch();
+        player.onAIMoveToRunning.dispatch();
     }
 }
 
-export async function OnAIMoveToSucceeded(eventPlayer: mod.Player) {
+export function OnAIMoveToSucceeded(eventPlayer: mod.Player) {
     const player = Portal.Player.fromNative(eventPlayer).asAI();
     if (player) {
         player._onMoveToSucceeded(); // Internal logic for path following
-        await player.onAIMoveToSucceeded.dispatch();
+        player.onAIMoveToSucceeded.dispatch();
     }
 }
 
-export async function OnAIParachuteRunning(eventPlayer: mod.Player) {
+export function OnAIParachuteRunning(eventPlayer: mod.Player) {
     const player = Portal.Player.fromNative(eventPlayer).asAI();
     if (player) {
-        await player.onAIParachuteRunning.dispatch();
+        player.onAIParachuteRunning.dispatch();
     }
 }
 
-export async function OnPlayerUIButtonEvent(eventPlayer: mod.Player, eventUIWidget: mod.UIWidget, eventUIButtonEvent: mod.UIButtonEvent) {
+export function OnPlayerUIButtonEvent(eventPlayer: mod.Player, eventUIWidget: mod.UIWidget, eventUIButtonEvent: mod.UIButtonEvent) {
     const player = Portal.Player.fromNative(eventPlayer);
     const widget = Portal.UI.UIWidget.fromNative(eventUIWidget);
 
     if (widget && widget instanceof Portal.UI.ButtonWidget) {
         switch (eventUIButtonEvent) {
             case mod.UIButtonEvent.ButtonDown:
-                await widget.onButtonDown.dispatch(player);
+                widget.onButtonDown.dispatch(player);
                 break;
             case mod.UIButtonEvent.ButtonUp:
-                await widget.onButtonUp.dispatch(player);
+                widget.onButtonUp.dispatch(player);
                 break;
             case mod.UIButtonEvent.FocusIn:
-                await widget.onFocusIn.dispatch(player);
+                widget.onFocusIn.dispatch(player);
                 break;
             case mod.UIButtonEvent.FocusOut:
-                await widget.onFocusOut.dispatch(player);
+                widget.onFocusOut.dispatch(player);
                 break;
             case mod.UIButtonEvent.HoverIn:
-                await widget.onHoverIn.dispatch(player);
+                widget.onHoverIn.dispatch(player);
                 break;
             case mod.UIButtonEvent.HoverOut:
-                await widget.onHoverOut.dispatch(player);
+                widget.onHoverOut.dispatch(player);
                 break;
         }
     }
 }
 
-export async function OnAIWaypointIdleFailed(eventPlayer: mod.Player) {
+export function OnAIWaypointIdleFailed(eventPlayer: mod.Player) {
     const player = Portal.Player.fromNative(eventPlayer).asAI();
     if (player) {
-        await player.onAIWaypointIdleFailed.dispatch();
+        player.onAIWaypointIdleFailed.dispatch();
     }
 }
 
-export async function OnAIWaypointIdleRunning(eventPlayer: mod.Player) {
+export function OnAIWaypointIdleRunning(eventPlayer: mod.Player) {
     const player = Portal.Player.fromNative(eventPlayer).asAI();
     if (player) {
-        await player.onAIWaypointIdleRunning.dispatch();
+        player.onAIWaypointIdleRunning.dispatch();
     }
 }
 
-export async function OnAIWaypointIdleSucceeded(eventPlayer: mod.Player) {
+export function OnAIWaypointIdleSucceeded(eventPlayer: mod.Player) {
     const player = Portal.Player.fromNative(eventPlayer).asAI();
     if (player) {
-        await player.onAIWaypointIdleSucceeded.dispatch();
+        player.onAIWaypointIdleSucceeded.dispatch();
     }
 }
 
-export async function OnSpawnerSpawned(eventPlayer: mod.Player, eventSpawner: mod.Spawner) {
+export function OnSpawnerSpawned(eventPlayer: mod.Player, eventSpawner: mod.Spawner) {
     const spawner = Portal.Spawner.fromNative(eventSpawner);
     const player = Portal.Player.fromNative(eventPlayer).asAI();
     if (player) {
-        await spawner.onSpawned.dispatch(player);
+        spawner.onSpawned.dispatch(player);
         Portal.AIManager._assignPersonality(player, spawner);
     }
 }
 
-export async function OnVehicleSpawned(eventVehicle: mod.Vehicle) {
+export function OnVehicleSpawned(eventVehicle: mod.Vehicle) {
     const vehicle = Portal.Vehicle.fromNative(eventVehicle);
-    await Portal.Game.onVehicleSpawned.dispatch(vehicle);
+    Portal.Game.onVehicleSpawned.dispatch(vehicle);
 }
 
-export async function OnMandown(player: mod.Player, killer: mod.Player) {
+export function OnMandown(player: mod.Player, killer: mod.Player) {
     const aPlayer = Portal.GameObject.fromNative(player) as Portal.Player;
     const aKiller = killer ? Portal.GameObject.fromNative(killer) as Portal.Player : null;
-    await aPlayer.onManDown.dispatch(aKiller);
+    aPlayer.onManDown.dispatch(aKiller);
 }
 
-export async function OnRayCastHit(eventPlayer: mod.Player, eventPosition: mod.Vector, eventNormal: mod.Vector, eventHitPlayer: mod.Player, eventHitVehicle: mod.Vehicle) {
+export function OnRayCastHit(eventPlayer: mod.Player, eventPosition: mod.Vector, eventNormal: mod.Vector, eventHitPlayer: mod.Player, eventHitVehicle: mod.Vehicle) {
     Portal.Game._handleRaycastHit(eventPlayer, eventPosition, eventNormal, eventHitPlayer, eventHitVehicle);
 }
 
-export async function OnRayCastMissed(eventPlayer: mod.Player) {
+export function OnRayCastMissed(eventPlayer: mod.Player) {
     Portal.Game._handleRaycastMiss(eventPlayer);
 }
 
-export async function OnCapturePointCaptured(eventCapturePoint: mod.CapturePoint) {
+export function OnCapturePointCaptured(eventCapturePoint: mod.CapturePoint) {
     const capturePoint = Portal.CapturePoint.fromNative(eventCapturePoint);
-    await capturePoint.onCaptured.dispatch();
+    capturePoint.onCaptured.dispatch();
 }
-export async function OnPlayerEarnedKillAssist(player: mod.Player, victim: mod.Player) {
+export function OnPlayerEarnedKillAssist(player: mod.Player, victim: mod.Player) {
     const aPlayer = Portal.GameObject.fromNative(player) as Portal.Player;
     const aVictim = Portal.GameObject.fromNative(victim) as Portal.Player;
-    await aPlayer.onEarnedKillAssist.dispatch(aVictim);
+    aPlayer.onEarnedKillAssist.dispatch(aVictim);
 }
 
-export async function OnCapturePointCapturing(eventCapturePoint: mod.CapturePoint) {
+export function OnCapturePointCapturing(eventCapturePoint: mod.CapturePoint) {
     const capturePoint = Portal.CapturePoint.fromNative(eventCapturePoint);
-    await capturePoint.onCapturing.dispatch();
+    capturePoint.onCapturing.dispatch();
 }
 
-export async function OnCapturePointLost(eventCapturePoint: mod.CapturePoint) {
+export function OnCapturePointLost(eventCapturePoint: mod.CapturePoint) {
     const capturePoint = Portal.CapturePoint.fromNative(eventCapturePoint);
-    await capturePoint.onLost.dispatch();
+    capturePoint.onLost.dispatch();
 }
 
-export async function OnPlayerEnterCapturePoint(eventPlayer: mod.Player, eventCapturePoint: mod.CapturePoint) {
+export function OnPlayerEnterCapturePoint(eventPlayer: mod.Player, eventCapturePoint: mod.CapturePoint) {
     const player = Portal.Player.fromNative(eventPlayer);
     const capturePoint = Portal.CapturePoint.fromNative(eventCapturePoint);
-    await player.onEnterCapturePoint.dispatch(capturePoint);
-    await capturePoint.onPlayerEnter.dispatch(player);
+    player.onEnterCapturePoint.dispatch(capturePoint);
+    capturePoint.onPlayerEnter.dispatch(player);
 }
 
-export async function OnPlayerExitCapturePoint(eventPlayer: mod.Player, eventCapturePoint: mod.CapturePoint) {
+export function OnPlayerExitCapturePoint(eventPlayer: mod.Player, eventCapturePoint: mod.CapturePoint) {
     const player = Portal.Player.fromNative(eventPlayer);
     const capturePoint = Portal.CapturePoint.fromNative(eventCapturePoint);
-    await player.onExitCapturePoint.dispatch(capturePoint);
-    await capturePoint.onPlayerExit.dispatch(player);
+    player.onExitCapturePoint.dispatch(capturePoint);
+    capturePoint.onPlayerExit.dispatch(player);
 }
 
-export async function OnPlayerExitVehicleSeat(player: mod.Player, vehicle: mod.Vehicle, seat: number) {
+export function OnPlayerExitVehicleSeat(player: mod.Player, vehicle: mod.Vehicle, seat: number) {
     const aPlayer = Portal.GameObject.fromNative(player) as Portal.Player;
     const aVehicle = Portal.GameObject.fromNative(vehicle) as Portal.Vehicle;
-    await aPlayer.onExitVehicleSeat.dispatch(aVehicle, seat);
-    await aVehicle.onExitVehicleSeat.dispatch(aPlayer, seat);
+    aPlayer.onExitVehicleSeat.dispatch(aVehicle, seat);
+    aVehicle.onExitVehicleSeat.dispatch(aPlayer, seat);
 }
 
-export async function OnPlayerEnterVehicleSeat(player: mod.Player, vehicle: mod.Vehicle, seat: number) {
+export function OnPlayerEnterVehicleSeat(player: mod.Player, vehicle: mod.Vehicle, seat: number) {
     const aPlayer = Portal.GameObject.fromNative(player) as Portal.Player;
     const aVehicle = Portal.GameObject.fromNative(vehicle) as Portal.Vehicle;
-    await aPlayer.onEnterVehicleSeat.dispatch(aVehicle, seat);
-    await aVehicle.onEnterVehicleSeat.dispatch(aPlayer, seat);
+    aPlayer.onEnterVehicleSeat.dispatch(aVehicle, seat);
+    aVehicle.onEnterVehicleSeat.dispatch(aPlayer, seat);
 }
-export async function OnPlayerSwitchTeam(player: mod.Player, team: mod.Team) {
+export function OnPlayerSwitchTeam(player: mod.Player, team: mod.Team) {
     const aPlayer = Portal.GameObject.fromNative(player) as Portal.Player;
     const aTeam = Portal.Team.fromNative(team);
-    await aPlayer.onSwitchTeam.dispatch(aTeam);
-    await aTeam.onPlayerSwitchIn.dispatch(aPlayer);
+    aPlayer.onSwitchTeam.dispatch(aTeam);
+    aTeam.onPlayerSwitchIn.dispatch(aPlayer);
 }
 
-export async function OnMCOMArmed(eventMCOM: mod.MCOM) {
+export function OnMCOMArmed(eventMCOM: mod.MCOM) {
     const mcom = Portal.MCOM.fromNative(eventMCOM);
-    await mcom.onArmed.dispatch();
+    mcom.onArmed.dispatch();
 }
 
-export async function OnMCOMDefused(eventMCOM: mod.MCOM) {
+export function OnMCOMDefused(eventMCOM: mod.MCOM) {
     const mcom = Portal.MCOM.fromNative(eventMCOM);
-    await mcom.onDefused.dispatch();
+    mcom.onDefused.dispatch();
 }
 
-export async function OnMCOMDestroyed(eventMCOM: mod.MCOM) {
+export function OnMCOMDestroyed(eventMCOM: mod.MCOM) {
     const mcom = Portal.MCOM.fromNative(eventMCOM);
-    await mcom.onDestroyed.dispatch();
+    mcom.onDestroyed.dispatch();
 }
 
-export async function OnPlayerUndeploy(player: mod.Player) {
+export function OnPlayerUndeploy(player: mod.Player) {
     const aPlayer = Portal.GameObject.fromNative(player) as Portal.Player;
-    await aPlayer.onUndeploy.dispatch();
+    aPlayer.onUndeploy.dispatch();
 }
 
-export async function OnPlayerDeployed(eventPlayer: mod.Player) {
+export function OnPlayerDeployed(eventPlayer: mod.Player) {
     const aPlayer = Portal.GameObject.fromNative(eventPlayer) as Portal.Player;
-    await aPlayer.onDeployed.dispatch();
+    aPlayer.onDeployed.dispatch();
 }
 
-export async function OnPlayerEnterAreaTrigger(eventPlayer: mod.Player, eventAreaTrigger: mod.AreaTrigger) {
+export function OnPlayerEnterAreaTrigger(eventPlayer: mod.Player, eventAreaTrigger: mod.AreaTrigger) {
     const player = Portal.Player.fromNative(eventPlayer);
     const areaTrigger = Portal.AreaTrigger.fromNative(eventAreaTrigger);
-    await player.onEnterAreaTrigger.dispatch(areaTrigger);
-    await areaTrigger.onPlayerEnter.dispatch(player);
+    player.onEnterAreaTrigger.dispatch(areaTrigger);
+    areaTrigger.onPlayerEnter.dispatch(player);
 }
 
-export async function OnRevived(player: mod.Player, reviver: mod.Player) {
+export function OnRevived(player: mod.Player, reviver: mod.Player) {
     const aPlayer = Portal.GameObject.fromNative(player) as Portal.Player;
     const aReviver = Portal.GameObject.fromNative(reviver) as Portal.Player;
-    await aPlayer.onRevived.dispatch(aReviver);
+    aPlayer.onRevived.dispatch(aReviver);
 }
 
-export async function OnPlayerExitAreaTrigger(eventPlayer: mod.Player, eventAreaTrigger: mod.AreaTrigger) {
+export function OnPlayerExitAreaTrigger(eventPlayer: mod.Player, eventAreaTrigger: mod.AreaTrigger) {
     const player = Portal.Player.fromNative(eventPlayer);
     const areaTrigger = Portal.AreaTrigger.fromNative(eventAreaTrigger);
-    await player.onExitAreaTrigger.dispatch(areaTrigger);
-    await areaTrigger.onPlayerExit.dispatch(player);
+    player.onExitAreaTrigger.dispatch(areaTrigger);
+    areaTrigger.onPlayerExit.dispatch(player);
 }
-export async function OnRingOfFireZoneSizeChange(ringOfFire: mod.RingOfFire, eventNumber: number) {
+export function OnRingOfFireZoneSizeChange(ringOfFire: mod.RingOfFire, eventNumber: number) {
     const aRingOfFire = Portal.GameObject.fromNative(ringOfFire) as Portal.RingOfFire;
-    await aRingOfFire.onZoneSizeChanged.dispatch(eventNumber);
+    aRingOfFire.onZoneSizeChanged.dispatch(eventNumber);
 }
 
-export async function OnPlayerInteract(eventPlayer: mod.Player, eventInteractPoint: mod.InteractPoint) {
+export function OnPlayerInteract(eventPlayer: mod.Player, eventInteractPoint: mod.InteractPoint) {
     const player = Portal.Player.fromNative(eventPlayer);
     const interactPoint = Portal.InteractPoint.fromNative(eventInteractPoint);
-    await player.onInteract.dispatch(interactPoint);
-    await interactPoint.onPlayerInteract.dispatch(player);
+    player.onInteract.dispatch(interactPoint);
+    interactPoint.onPlayerInteract.dispatch(player);
 }
 
-export async function OnGameModeStarted() {
-    await Portal.Game.onGameModeStarted.dispatch();
+export function OnGameModeStarted() {
+    Portal.Game.onGameModeStarted.dispatch();
 }
 
-export async function OnGameModeEnding() {
-    await Portal.Game.onGameModeEnding.dispatch();
+export function OnGameModeEnding() {
+    Portal.Game.onGameModeEnding.dispatch();
 }
 
-export async function OnTimeLimitReached() {
-    await Portal.Game.onTimeLimitReached.dispatch();
+export function OnTimeLimitReached() {
+    Portal.Game.onTimeLimitReached.dispatch();
 }
 
-export async function OnPlayerJoinGame(player: mod.Player) {
+export function OnPlayerJoinGame(player: mod.Player) {
     const aPlayer = Portal.Player.fromNative(player);
-    await Portal.Game.onPlayerJoined.dispatch(aPlayer);
+    Portal.Game.onPlayerJoined.dispatch(aPlayer);
 }
 
-export async function OnPlayerLeaveGame(playerId: number) {
-    await Portal.Game.onPlayerLeft.dispatch(playerId);
+export function OnPlayerLeaveGame(playerId: number) {
+    Portal.Game.onPlayerLeft.dispatch(playerId);
     Portal.GameObject.removeInstance(playerId);
 }
 
-export async function OnPlayerEarnedKill(player: mod.Player, victim: mod.Player, deathType: mod.DeathType, weapon: mod.WeaponUnlock) {
+export function OnPlayerEarnedKill(player: mod.Player, victim: mod.Player, deathType: mod.DeathType, weapon: mod.WeaponUnlock) {
     const aPlayer = Portal.GameObject.fromNative(player) as Portal.Player;
     const aVictim = Portal.GameObject.fromNative(victim) as Portal.Player;
-    await aPlayer.onEarnedKill.dispatch(aVictim, deathType, weapon);
+    aPlayer.onEarnedKill.dispatch(aVictim, deathType, weapon);
 }
 
-export async function OnAIParachuteSucceeded(player: mod.Player) {
+export function OnAIParachuteSucceeded(player: mod.Player) {
     const aPlayer = Portal.Player.fromNative(player).asAI();
     if (aPlayer) {
-        await aPlayer.onAIParachuteSucceeded.dispatch();
+        aPlayer.onAIParachuteSucceeded.dispatch();
     }
 }
 //#endregion
